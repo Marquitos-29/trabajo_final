@@ -12,9 +12,9 @@ public class Login extends javax.swing.JFrame {
         Titulo = new javax.swing.JLabel();
         P_Inicio = new javax.swing.JPanel();
         L_Nombre = new javax.swing.JLabel();
-        Nombre = new javax.swing.JTextField();
         L_Contra = new javax.swing.JLabel();
         INFO_Ini = new javax.swing.JLabel();
+        Nombre = new javax.swing.JTextField();
         Contrasena = new javax.swing.JPasswordField();
         Iniciar = new javax.swing.JButton();
         Registrarse = new javax.swing.JButton();
@@ -48,7 +48,13 @@ public class Login extends javax.swing.JFrame {
         P_Inicio.setBackground(new java.awt.Color(255, 51, 51));
 
         L_Nombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        L_Nombre.setText("Nombre:");
+        L_Nombre.setText("Usuario:");
+
+        L_Contra.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        L_Contra.setText("Contraseña:");
+
+        INFO_Ini.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        INFO_Ini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         Nombre.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         Nombre.addActionListener(new java.awt.event.ActionListener() {
@@ -56,11 +62,6 @@ public class Login extends javax.swing.JFrame {
                 NombreActionPerformed(evt);
             }
         });
-
-        L_Contra.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        L_Contra.setText("Contraseña:");
-
-        INFO_Ini.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         Contrasena.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
@@ -145,22 +146,36 @@ public class Login extends javax.swing.JFrame {
     private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreActionPerformed
-
     
     // INICIAR SESION
     private void IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Menu().setVisible(true);
-                dispose();
-            }
-        });
+     
+        if(DBConexion.Inicio(Nombre.getText(),Contrasena.getText()) == 0){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Menu().setVisible(true);
+                    dispose();
+                }
+            });
+        }else{
+            INFO_Ini.setText("Error en el inicio de sesion, vuelve a intentarlo");
+        }
     }//GEN-LAST:event_IniciarActionPerformed
 
     
     // REGISTRARSE
     private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseActionPerformed
-        // TODO add your handling code here:
+        
+        if(DBConexion.Registro(Nombre.getText(),Contrasena.getText()) == 0){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Menu_Usuario().setVisible(true);
+                    dispose();
+                }
+            });
+        }else{
+            INFO_Ini.setText("Error en el registro, vuelve a intentarlo");
+        }
     }//GEN-LAST:event_RegistrarseActionPerformed
 
 

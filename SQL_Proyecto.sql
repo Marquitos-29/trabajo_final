@@ -6,16 +6,17 @@ USE CVA;
 
 CREATE TABLE TInicio (
 ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-Usuario varchar(15) not null,
+Usuario varchar(15) unique not null,
 Contraseña varchar(50) not null
 );
 
 CREATE TABLE TDatosP (
-ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ID INT NOT NULL PRIMARY KEY,
 Usuario varchar(15),
 Apellido varchar(15),
 Categoria varchar(15),
 Numero INT,
+Genero varchar(10),
 Federado boolean,
 Apodo varchar(20)
 );
@@ -42,10 +43,10 @@ Precio int
 );
 
 insert into TEquipo (ID, categoria, genero, federado, primera_hora, segunda_hora, Precio) values
-(1, "alevin", "M", True, "L 16:00", "X 16:00", 30),
-(2, "alevin", "F", True, "L 16:00", "X 16:00", 30),
-(3, "alevin", "M", false, "M 16:00", "J 16:00", 15),
-(4, "alevin", "F", false, "M 16:00", "J 16:00", 15),
+(1, "Alevin", "M", True, "L 16:00", "X 16:00", 30),
+(2, "Alevin", "F", True, "L 16:00", "X 16:00", 30),
+(3, "Alevin", "M", false, "M 16:00", "J 16:00", 15),
+(4, "Alevin", "F", false, "M 16:00", "J 16:00", 15),
 (5, "Infantil", "M", True, "L 17:00", "X 17:00", 40),
 (6, "Infantil", "F", True, "L 17:00", "X 17:00", 40),
 (7, "Infantil", "M", false, "M 17:00", "J 17:00", 20),
@@ -67,18 +68,5 @@ insert into TEquipo (ID, categoria, genero, federado, primera_hora, segunda_hora
 (23, "Senior", "M", false, "M 21:00", "J 21:00", 30),
 (24, "Senior", "F", false, "M 21:00", "J 21:00", 30);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+select * from Tinicio;
+select * from TDatosP;

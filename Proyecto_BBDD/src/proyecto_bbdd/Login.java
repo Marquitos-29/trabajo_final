@@ -57,11 +57,6 @@ public class Login extends javax.swing.JFrame {
         INFO_Ini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         Nombre.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        Nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreActionPerformed(evt);
-            }
-        });
 
         Contrasena.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
@@ -142,39 +137,61 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreActionPerformed
     
     // INICIAR SESION
     private void IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarActionPerformed
-     
-        if(DBConexion.Inicio(Nombre.getText(),Contrasena.getText()) == 0){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new Menu().setVisible(true);
-                    dispose();
-                }
-            });
+        //Si ambos campos estan rellenos continuamos, si no, pedimos que los rellenen
+        if(Nombre.getText().isEmpty() || Contrasena.getText().isEmpty()){
+            INFO_Ini.setText("Rellene ambos campos");
         }else{
-            INFO_Ini.setText("Error en el inicio de sesion, vuelve a intentarlo");
+            //Comprobamos el estado de la consulta 0 (accedemos a la app) 1(error del usuario) 2 (Error de la contraseña) -1 (error de la consulta)
+            switch(DBConexion.Inicio(Nombre.getText(),Contrasena.getText())){
+                case 0:
+                    
+                    //Si accedemos, se abre el menu
+                    java.awt.EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            new Menu().setVisible(true);
+                            dispose();
+                        }
+                    });
+                    break;
+                case 1:
+                    INFO_Ini.setText("El usuario no existe");
+                    break;
+                case 2:
+                    INFO_Ini.setText("Contraseña incorrecta");
+                    break;
+                case -1:
+                    INFO_Ini.setText("Error en la consulta");
+                    break;
+                
+            }
+
         }
     }//GEN-LAST:event_IniciarActionPerformed
 
-    
     // REGISTRARSE
     private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseActionPerformed
         
-        if(DBConexion.Registro(Nombre.getText(),Contrasena.getText()) == 0){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new Menu_Usuario().setVisible(true);
-                    dispose();
-                }
-            });
+        //Si no se han rellenado ambos campos se notifica
+        if(Nombre.getText().isEmpty() || Contrasena.getText().isEmpty()){
+            INFO_Ini.setText("Rellene ambos campos");
         }else{
-            INFO_Ini.setText("Error en el registro, vuelve a intentarlo");
+            //Si se han rellenado y se ha registrado correctamente se abre la ventana de Menu de usuario para ingresar los datos 
+            int acceso = DBConexion.Registro(Nombre.getText(),Contrasena.getText());
+            
+            switch(acceso){
+                case 0 -> 
+                    java.awt.EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            new Menu_Usuario().setVisible(true);
+                            dispose();
+                        }
+                    });
+                case 1 -> INFO_Ini.setText("Nombre de usuario ya en uso");
+                default -> INFO_Ini.setText("Error en el registro, vuelve a intentarlo");
+            }
         }
     }//GEN-LAST:event_RegistrarseActionPerformed
 

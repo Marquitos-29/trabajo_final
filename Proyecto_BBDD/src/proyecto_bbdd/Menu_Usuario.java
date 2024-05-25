@@ -1,4 +1,7 @@
 package proyecto_bbdd;
+
+import java.time.Year;
+
 public class Menu_Usuario extends javax.swing.JFrame {
 
     public Menu_Usuario() {
@@ -9,7 +12,6 @@ public class Menu_Usuario extends javax.swing.JFrame {
     private void initComponents() {
 
         G_Fede = new javax.swing.ButtonGroup();
-        G_Gen = new javax.swing.ButtonGroup();
         P_Titulo = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         P_Inicio = new javax.swing.JPanel();
@@ -28,8 +30,8 @@ public class Menu_Usuario extends javax.swing.JFrame {
         R_Federado = new javax.swing.JRadioButton();
         R_Escuela = new javax.swing.JRadioButton();
         Genero = new javax.swing.JComboBox<>();
-        Cancelar = new javax.swing.JButton();
         Guardar = new javax.swing.JButton();
+        Info = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(660, 340));
@@ -51,7 +53,7 @@ public class Menu_Usuario extends javax.swing.JFrame {
             .addGroup(P_TituloLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         P_Inicio.setBackground(new java.awt.Color(255, 51, 51));
@@ -99,14 +101,15 @@ public class Menu_Usuario extends javax.swing.JFrame {
 
         Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer" }));
 
-        Cancelar.setText("Cancelar");
-
         Guardar.setText("Guardar");
         Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarActionPerformed(evt);
             }
         });
+
+        Info.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        Info.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout P_InicioLayout = new javax.swing.GroupLayout(P_Inicio);
         P_Inicio.setLayout(P_InicioLayout);
@@ -115,7 +118,7 @@ public class Menu_Usuario extends javax.swing.JFrame {
             .addGroup(P_InicioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(P_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, P_InicioLayout.createSequentialGroup()
+                    .addGroup(P_InicioLayout.createSequentialGroup()
                         .addGroup(P_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_InicioLayout.createSequentialGroup()
                                 .addGroup(P_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,17 +146,19 @@ public class Menu_Usuario extends javax.swing.JFrame {
                                 .addComponent(L_Ano_nac)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(Ano_nac, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                                 .addComponent(L_N_jugador)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                                 .addComponent(N_jugador, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(P_InicioLayout.createSequentialGroup()
-                        .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Info, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(P_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(R_Federado)
-                            .addComponent(R_Escuela)
-                            .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(R_Federado)
+                                .addComponent(R_Escuela))
+                            .addComponent(Guardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)))
                 .addContainerGap())
         );
         P_InicioLayout.setVerticalGroup(
@@ -183,10 +188,13 @@ public class Menu_Usuario extends javax.swing.JFrame {
                         .addComponent(R_Federado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(R_Escuela)))
-                .addGap(21, 21, 21)
-                .addGroup(P_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(P_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(P_InicioLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                    .addGroup(P_InicioLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -210,24 +218,79 @@ public class Menu_Usuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Menu().setVisible(true);
-                dispose();
+ 
+        if(Nombre.getText().isEmpty() || Apellidos.getText().isEmpty() || Apodo.getText().isEmpty() || Ano_nac.getText().isEmpty()){
+        
+            Info.setText("Rellene todos los campos (Menos equipo si no esta inscrito)");
+            
+        }else{
+            
+            int Fede = Federado();
+            String Cat = Categoria();
+            String Gen = Genero();
+            
+            if(Cat == "Pequeño"){
+                Info.setText("Muy pequeño para jugar");
+            }else{
+                DBConexion.GuardarDatosP(Nombre.getText(),Apellidos.getText(),Apodo.getText(),Cat,Integer.parseInt(N_jugador.getText()),Gen,Fede);
+            
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Menu().setVisible(true);
+                    dispose();
+                }
+            });
             }
-        });
+        }        
     }//GEN-LAST:event_GuardarActionPerformed
+
+    public int Federado(){
+        
+        if (G_Fede.getSelection()==null) {
+            return 0;
+        }else{
+            if (R_Federado.isSelected()==true) {
+                return 1;
+            }else{
+                return 2;   
+            }
+        } 
+    }
+    
+    public String Categoria(){
+        
+        int años = Year.now().getValue()-Integer.parseInt(Ano_nac.getText());
+        
+        return switch (años) {
+            case 1, 2, 3, 4, 5, 6 -> "Pequeño";
+            case 7, 8, 9, 10 -> "Alevin";
+            case 11, 12 -> "Infantil";
+            case 13, 14 -> "Cadete";
+            case 15, 16 -> "Junior";
+            case 17, 18 -> "Juvenil";
+            case 19, 20 -> "Junior";
+            default -> "Senior";
+        };
+    }
+    
+    public String Genero(){
+        if (Genero.getSelectedIndex()==0){
+            return "Masculino";
+        }else{
+            return "Femenino";
+        }
+        
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Ano_nac;
     private javax.swing.JTextField Apellidos;
     private javax.swing.JTextField Apodo;
-    private javax.swing.JButton Cancelar;
     private javax.swing.ButtonGroup G_Fede;
-    private javax.swing.ButtonGroup G_Gen;
     private javax.swing.JComboBox<String> Genero;
     private javax.swing.JButton Guardar;
+    private javax.swing.JLabel Info;
     private javax.swing.JLabel L_Ano_nac;
     private javax.swing.JLabel L_Apellidos;
     private javax.swing.JLabel L_Apodo;

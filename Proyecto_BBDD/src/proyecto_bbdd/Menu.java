@@ -11,10 +11,10 @@ public class Menu extends javax.swing.JFrame {
         P_Titulo = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         P_Menu = new javax.swing.JPanel();
-        M_User = new javax.swing.JButton();
         M_Tienda = new javax.swing.JButton();
         M_Inscripcion = new javax.swing.JButton();
         M_Reserva = new javax.swing.JButton();
+        M_Tienda1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
@@ -42,16 +42,13 @@ public class Menu extends javax.swing.JFrame {
 
         P_Menu.setBackground(new java.awt.Color(255, 51, 51));
 
-        M_User.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        M_User.setText("Menu de Usuario");
-        M_User.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                M_UserActionPerformed(evt);
-            }
-        });
-
         M_Tienda.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         M_Tienda.setText("Tienda");
+        M_Tienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                M_TiendaActionPerformed(evt);
+            }
+        });
 
         M_Inscripcion.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         M_Inscripcion.setText("Inscripciones");
@@ -63,34 +60,49 @@ public class Menu extends javax.swing.JFrame {
 
         M_Reserva.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         M_Reserva.setText("Reserva");
+        M_Reserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                M_ReservaActionPerformed(evt);
+            }
+        });
+
+        M_Tienda1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        M_Tienda1.setText("Cerrar sesion");
+        M_Tienda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                M_Tienda1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout P_MenuLayout = new javax.swing.GroupLayout(P_Menu);
         P_Menu.setLayout(P_MenuLayout);
         P_MenuLayout.setHorizontalGroup(
             P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_MenuLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(M_Inscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(M_User, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(M_Tienda, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(M_Reserva, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addGap(30, 30, 30)
+                .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(P_MenuLayout.createSequentialGroup()
+                        .addComponent(M_Inscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(M_Reserva, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(P_MenuLayout.createSequentialGroup()
+                        .addComponent(M_Tienda, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(M_Tienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         P_MenuLayout.setVerticalGroup(
             P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_MenuLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(M_Tienda, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                    .addComponent(M_User, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(49, 49, 49)
                 .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(M_Reserva, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(M_Inscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .addComponent(M_Inscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(M_Reserva, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(M_Tienda, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(M_Tienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,61 +127,34 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void M_UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_UserActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Menu_Usuario().setVisible(true);
-                dispose();
-            }
-        });
-    }//GEN-LAST:event_M_UserActionPerformed
-
     private void M_InscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_InscripcionActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Menu_Inscripcion().setVisible(true);
-                dispose();
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Menu_Inscripcion().setVisible(true);
+            dispose();
         });
     }//GEN-LAST:event_M_InscripcionActionPerformed
 
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Menu().setVisible(true);
-//            }
-//        });
-//    }
+    private void M_TiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_TiendaActionPerformed
+        java.awt.EventQueue.invokeLater(() -> {
+            new Tienda().setVisible(true);
+            dispose();
+        });
+    }//GEN-LAST:event_M_TiendaActionPerformed
+
+    private void M_ReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_ReservaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_M_ReservaActionPerformed
+
+    private void M_Tienda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_Tienda1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_M_Tienda1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton M_Inscripcion;
     private javax.swing.JButton M_Reserva;
     private javax.swing.JButton M_Tienda;
-    private javax.swing.JButton M_User;
+    private javax.swing.JButton M_Tienda1;
     private javax.swing.JPanel P_Menu;
     private javax.swing.JPanel P_Titulo;
     private javax.swing.JLabel Titulo;

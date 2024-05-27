@@ -1,7 +1,11 @@
 package Productos;
+
+import proyecto_bbdd.DBConexion;
+
 public class Balon extends javax.swing.JPanel {
 
-    private int ID = 6;
+    private String producto = "Balon pro";
+    private int precio = 35;
     
     public Balon() {
         initComponents();
@@ -27,11 +31,16 @@ public class Balon extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Balones");
+        jLabel1.setText("BALONES");
         jLabel1.setPreferredSize(new java.awt.Dimension(276, 65));
 
         Añadir.setText("Añadir");
         Añadir.setPreferredSize(new java.awt.Dimension(165, 45));
+        Añadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirActionPerformed(evt);
+            }
+        });
 
         M1.setText("Ver modelo 1");
         M1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,22 +127,29 @@ public class Balon extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void M1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M1ActionPerformed
-        ID = 6;
-            Precio.setText("35€");
+        producto = "Balon pro";
+            precio = 35;
+            Precio.setText(precio+"€");
             Balon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Balon1.png")));
     }//GEN-LAST:event_M1ActionPerformed
 
     private void M2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M2ActionPerformed
-        ID = 7;
-            Precio.setText("25€");
+        producto = "Balon simple";
+            precio = 25;
+            Precio.setText(precio+"€");
             Balon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Balon2.png")));
     }//GEN-LAST:event_M2ActionPerformed
 
     private void M3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M3ActionPerformed
-        ID = 8;
-            Precio.setText("15€");
+        producto = "Balon mikasa";
+            precio = 15;
+            Precio.setText(precio+"€");
             Balon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Balon3.png")));
     }//GEN-LAST:event_M3ActionPerformed
+
+    private void AñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirActionPerformed
+        DBConexion.AnadirC(producto,null,precio);
+    }//GEN-LAST:event_AñadirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

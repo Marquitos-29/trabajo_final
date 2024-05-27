@@ -35,9 +35,9 @@ public class Menu extends javax.swing.JFrame {
         P_TituloLayout.setVerticalGroup(
             P_TituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_TituloLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         P_Menu.setBackground(new java.awt.Color(255, 51, 51));
@@ -98,7 +98,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(M_Inscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(M_Reserva, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(M_Tienda, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(M_Tienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -143,10 +143,14 @@ public class Menu extends javax.swing.JFrame {
 
     private void M_ReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_ReservaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_M_ReservaActionPerformed
 
     private void M_Tienda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_Tienda1ActionPerformed
-        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login().setVisible(true);
+            dispose();
+        });
     }//GEN-LAST:event_M_Tienda1ActionPerformed
 
 

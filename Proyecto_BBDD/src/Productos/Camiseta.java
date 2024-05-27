@@ -1,7 +1,10 @@
 package Productos;
+
+import proyecto_bbdd.DBConexion;
+
 public class Camiseta extends javax.swing.JPanel {
 
-    private int ID = 1;
+    private String producto = "Camiseta Principal";
     
     public Camiseta() {
         initComponents();
@@ -54,6 +57,11 @@ public class Camiseta extends javax.swing.JPanel {
         Talla.setSelectedIndex(2);
 
         Añadir.setText("Añadir");
+        Añadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -122,18 +130,23 @@ public class Camiseta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CambioActionPerformed
-        if(ID == 1){
-            ID = 2;
+        if(producto == "Camiseta Principal"){
+            producto = "Camiseta Secundaria";
             Cambio.setText("Cambiar a principal");
             Delantera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/DCamisetaS.png")));
             Trasera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/TCamisetaS.png")));
         }else{
-            ID = 1;
+            producto = "Camiseta Principal";
             Cambio.setText("Cambiar a secundaria");
             Delantera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/DCamisetaP.png")));
             Trasera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/TCamisetaP.png")));
         }
     }//GEN-LAST:event_CambioActionPerformed
+
+    private void AñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirActionPerformed
+        
+        DBConexion.AnadirC(producto,Talla.getSelectedItem().toString(),20);
+    }//GEN-LAST:event_AñadirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

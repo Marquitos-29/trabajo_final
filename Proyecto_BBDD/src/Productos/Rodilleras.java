@@ -1,4 +1,7 @@
 package Productos;
+
+import proyecto_bbdd.DBConexion;
+
 public class Rodilleras extends javax.swing.JPanel {
 
     public Rodilleras() {
@@ -25,11 +28,16 @@ public class Rodilleras extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Rodilleras");
+        jLabel1.setText("RODILLERAS");
         jLabel1.setPreferredSize(new java.awt.Dimension(276, 65));
 
         Añadir.setText("Añadir");
         Añadir.setPreferredSize(new java.awt.Dimension(165, 45));
+        Añadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirActionPerformed(evt);
+            }
+        });
 
         Talla.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         Talla.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "XS", "S", "M", "L", "XL" }));
@@ -100,6 +108,10 @@ public class Rodilleras extends javax.swing.JPanel {
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirActionPerformed
+        DBConexion.AnadirC("Rodilleras",Talla.getSelectedItem().toString(),15);
+    }//GEN-LAST:event_AñadirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

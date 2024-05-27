@@ -7,10 +7,9 @@ public class Proyecto_BBDD {
         db.getConnection();
         
         //Ejecutamos la primera ventana
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login().setVisible(true);
         });
     }
+    
 }

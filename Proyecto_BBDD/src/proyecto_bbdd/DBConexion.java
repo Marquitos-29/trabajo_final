@@ -1,6 +1,7 @@
 package proyecto_bbdd;
 
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class DBConexion {
@@ -25,6 +26,14 @@ public class DBConexion {
     
     private static PreparedStatement Query = null;
     private static ResultSet respuesta = null;
+    
+    
+    //Tienda
+    //Carritos disponibles y aun abiertos
+    private static ArrayList<Object[]> tabla = new ArrayList<>();
+    private static int PrecioT = 0;
+    private static int NCarro = 0;
+    
     
     //Cargamos el driver
     static{
@@ -107,7 +116,6 @@ public class DBConexion {
         return acceso;
     }
     
-    
     public static int Registro(String User, String password){
         //reiniciamos la query 
         Reiniciar();
@@ -143,7 +151,6 @@ public class DBConexion {
         return acceso;
     }  
     
-    
     // Guardamos los datos del usuario
     public static int GuardarDatosP(String Nombre,String Apellidos,String Apodo, String Cat,int Numero, String Genero, int Fede){
         //Reiniciamos 
@@ -172,4 +179,128 @@ public class DBConexion {
         } 
         return 1;
     }
- }
+    
+    //Añadir productos al carrito
+    public static void AnadirC(String producto, String talla, int precio){
+        
+        // Agregamos el producto a la tabla
+        tabla.add(new Object[]{producto, talla, precio});
+        JOptionPane.showMessageDialog(null, "Artículo añadido al carrito con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
+    
+    }
+    
+    public static void VerCarrito(){
+        PrecioT = 0;
+        for (Object[] fila : tabla) {
+            Carrito.AñadirFila(fila);
+            int indice = 0;
+            
+            for (Object dato : fila) {
+                if(indice==2){
+                    
+                    PrecioT = PrecioT + (int) dato;
+                }
+                ++indice;
+            }
+        }
+        Carrito.Precio(PrecioT);
+    }
+    
+    public static void Comprar(){
+        
+        //reiniciamos la query 
+        Reiniciar();
+        
+       try{
+            
+            //Insertamos los valores del registro 
+            String SQL = "insert into TPedidos values(?,?,?)";
+            Query = con.prepareStatement(SQL,PreparedStatement.RETURN_GENERATED_KEYS);
+            //Se dan los valores para este insert que seran los futuros valores del login
+            Query.setInt(1, ID);
+            Query.setInt(2, 0);
+            Query.setInt(3, PrecioT);
+            
+            //Ejecuta la Query
+            Query.executeUpdate();
+            respuesta = Query.getGeneratedKeys();
+            
+            //Recoger la respuesta
+            if (respuesta.next()) {
+                NCarro = respuesta.getInt(1);
+            }
+            
+            
+            int Nproducto = 0;
+            for (Object[] fila : tabla) {
+                
+                
+                Reiniciar();
+
+                Query = con.prepareStatement("insert into TDatosC values(?,?,?,?,?)");
+
+                int indice = 0;
+                ++Nproducto;
+                
+                Query.setInt(1, NCarro);
+                Query.setInt(2, Nproducto);
+                    
+                    for (Object dato : fila) {
+                        switch(indice){
+                            case 0 -> {
+                                Query.setString(3, (String)dato);
+                            }
+                            case 1 -> {
+                                Query.setString(4, (String)dato);
+                            }
+                            case 2 -> {
+                                Query.setInt(5, (int)dato);
+                            }
+                        }
+                        ++indice;
+                    }
+                
+                Query.executeUpdate();
+        
+            }
+            
+        } catch (SQLException e) {
+            
+            // Manejar otras excepciones SQLException
+            JOptionPane.showMessageDialog(null, "ERROR EN LA CONSULTA: " + e);
+            acceso = -1; // Error de conexión o consulta SQL
+            
+        }  
+       
+       tabla.clear();
+       
+    }
+    
+    public static void Precio(){
+        FCompra.EscPrecio(PrecioT);
+    }
+    
+    public static int ComprobarE(){
+        Reiniciar();
+        int Fede = 0;
+        try {
+            String selectSQL = "SELECT Fede FROM TDatosP WHERE ID = ?";
+            Query = con.prepareStatement(selectSQL);
+
+            // Asigna el valor al parámetro de la consulta
+            Query.setInt(1, ID); // Suponiendo que ya tienes definido el ID
+
+            // Ejecuta la consulta
+            respuesta = Query.executeQuery();
+
+            // Procesa el resultado
+            if (respuesta.next()) {
+                Fede = respuesta.getInt("Fede");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Fede;
+    }
+}

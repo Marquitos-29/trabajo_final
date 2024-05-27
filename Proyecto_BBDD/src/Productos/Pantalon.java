@@ -1,4 +1,7 @@
 package Productos;
+
+import proyecto_bbdd.DBConexion;
+
 public class Pantalon extends javax.swing.JPanel {
 
     public Pantalon() {
@@ -44,6 +47,11 @@ public class Pantalon extends javax.swing.JPanel {
         Talla.setSelectedIndex(2);
 
         Añadir.setText("Añadir");
+        Añadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,6 +114,10 @@ public class Pantalon extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirActionPerformed
+        DBConexion.AnadirC("Pantalon",Talla.getSelectedItem().toString(),20);
+    }//GEN-LAST:event_AñadirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

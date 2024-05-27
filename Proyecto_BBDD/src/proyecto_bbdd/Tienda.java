@@ -3,6 +3,7 @@ public class Tienda extends javax.swing.JFrame {
 
     public Tienda() {
         initComponents();
+        ProductoInicio();
     }
 
     @SuppressWarnings("unchecked")
@@ -25,6 +26,8 @@ public class Tienda extends javax.swing.JFrame {
         jButton6.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tienda");
+        setResizable(false);
 
         Titulo.setBackground(new java.awt.Color(204, 204, 204));
         Titulo.setPreferredSize(new java.awt.Dimension(800, 80));
@@ -44,6 +47,11 @@ public class Tienda extends javax.swing.JFrame {
 
         Carrito.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Carrito.setText("Carrito");
+        Carrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CarritoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout TituloLayout = new javax.swing.GroupLayout(Titulo);
         Titulo.setLayout(TituloLayout);
@@ -52,9 +60,9 @@ public class Tienda extends javax.swing.JFrame {
             .addGroup(TituloLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(42, 42, 42)
                 .addComponent(L_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(Carrito, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -62,11 +70,11 @@ public class Tienda extends javax.swing.JFrame {
             TituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TituloLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(TituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(TituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Carrito, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(L_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Carrito, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addComponent(L_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         Custom.setBackground(new java.awt.Color(255, 51, 51));
@@ -185,6 +193,17 @@ public class Tienda extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ProductoInicio(){
+        Productos.Camiseta pn = new Productos.Camiseta();
+        pn.setSize(600,400);
+        pn.setLocation(0,0);
+        
+        Custom.removeAll();
+        Custom.add(pn);
+        Custom.revalidate();
+        Custom.repaint();
+    }
+    
     private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
         java.awt.EventQueue.invokeLater(() -> {
             new Menu().setVisible(true);
@@ -246,6 +265,13 @@ public class Tienda extends javax.swing.JFrame {
         Custom.revalidate();
         Custom.repaint();
     }//GEN-LAST:event_BalonActionPerformed
+
+    private void CarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarritoActionPerformed
+        java.awt.EventQueue.invokeLater(() -> {
+            new Carrito().setVisible(true);
+            dispose();
+        });
+    }//GEN-LAST:event_CarritoActionPerformed
 
 
 

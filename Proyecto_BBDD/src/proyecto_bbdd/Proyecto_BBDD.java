@@ -11,5 +11,4 @@ public class Proyecto_BBDD {
             new Login().setVisible(true);
         });
     }
-    
 }

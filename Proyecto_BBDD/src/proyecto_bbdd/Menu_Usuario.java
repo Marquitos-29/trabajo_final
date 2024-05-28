@@ -262,7 +262,7 @@ public class Menu_Usuario extends javax.swing.JFrame {
         int años = Year.now().getValue()-Integer.parseInt(Ano_nac.getText());
         
         return switch (años) {
-            case 1, 2, 3, 4, 5, 6 -> "Pequeño";
+            case 0, 1, 2, 3, 4, 5, 6 -> "Pequeño";
             case 7, 8, 9, 10 -> "Alevin";
             case 11, 12 -> "Infantil";
             case 13, 14 -> "Cadete";
@@ -275,9 +275,9 @@ public class Menu_Usuario extends javax.swing.JFrame {
     
     public String Genero(){
         if (Genero.getSelectedIndex()==0){
-            return "Masculino";
+            return "M";
         }else{
-            return "Femenino";
+            return "F";
         }
         
     }

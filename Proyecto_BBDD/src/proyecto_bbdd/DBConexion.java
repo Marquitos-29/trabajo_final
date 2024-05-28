@@ -44,7 +44,6 @@ public class DBConexion {
         }
     }
             
-    
     //Conectamos con la base de datos
     public Connection getConnection(){
         con = null;
@@ -156,6 +155,8 @@ public class DBConexion {
         //Reiniciamos 
         Reiniciar();
         
+        int IDEquipo = IDEquipo(Fede, Cat, Genero);
+        
         try{
             
             //Insertamos los datos en los datos 
@@ -167,11 +168,15 @@ public class DBConexion {
                 Query.setString(4, Cat);
                 Query.setInt(5, Numero);
                 Query.setString(6, Genero);
-                Query.setInt(7, Fede);
+                Query.setInt(7, IDEquipo);
                 Query.setString(8, Apodo);
 
                 //Ejecuta la Query
                 Query.executeUpdate();
+                
+                Reiniciar();
+                
+                
         } catch (SQLException e) {
             // Manejar excepciones SQLException
             JOptionPane.showMessageDialog(null, "ERROR EN LA CONSULTA: " + e);
@@ -295,12 +300,164 @@ public class DBConexion {
 
             // Procesa el resultado
             if (respuesta.next()) {
-                Fede = respuesta.getInt("Fede");
+                Fede = respuesta.getInt("Federado");
             }
             
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return Fede;
+    }
+    
+    public static int IDE(){
+        
+        try{
+        
+            Query = con.prepareStatement("SELECT ID_equipo FROM TDatosP WHERE ID = ?");
+
+            Query.setInt(1, ID);
+
+            respuesta = Query.executeQuery();
+            
+            if (respuesta.next()) {
+                System.out.println(respuesta.getInt("ID_equipo"));
+                return respuesta.getInt("ID_equipo");
+            }
+            
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    public static void INFO_Equipos(){
+        Reiniciar();
+        
+        String Gen ="";
+        String Cat ="";
+
+        //Datos del federado
+        int ID1= 0;
+        String H1_1="";
+        String H2_1="";
+        int Precio1=0;
+        
+        //Datos de escuela
+        int ID2=0;
+        String H1_2="";
+        String H2_2="";
+        int Precio2=0;
+        
+        try{
+            Reiniciar();
+            Query = con.prepareStatement("SELECT Genero,Categoria FROM TDatosP WHERE ID = ?");
+
+            Query.setInt(1, ID);
+
+            respuesta = Query.executeQuery();
+            
+            if (respuesta.next()) {
+                Gen = respuesta.getString("Genero");
+                Cat = respuesta.getString("Categoria");                
+            }
+            
+            Reiniciar();
+            
+            Query = con.prepareStatement("SELECT ID,primera_hora,segunda_hora,Precio FROM TEquipo WHERE categoria = ? and genero = ? and federado = ?");
+
+            Query.setString(1, Cat);
+            Query.setString(2, Gen);
+            Query.setBoolean(3, true);
+            
+            respuesta = Query.executeQuery();
+            
+            if (respuesta.next()) {
+                ID1 = respuesta.getInt("ID");
+                H1_1 = respuesta.getString("primera_hora");   
+                H2_1 = respuesta.getString("segunda_hora"); 
+                Precio1 = respuesta.getInt("Precio");
+            }
+            
+            Reiniciar();
+            
+            Query = con.prepareStatement("SELECT ID,primera_hora,segunda_hora,Precio FROM TEquipo WHERE categoria = ? and genero = ? and federado = ?");
+
+            Query.setString(1, Cat);
+            Query.setString(2, Gen);
+            Query.setBoolean(3, false);
+            
+            respuesta = Query.executeQuery();
+            
+            if (respuesta.next()) {
+                ID2 = respuesta.getInt("ID");
+                H1_2 = respuesta.getString("primera_hora");   
+                H2_2 = respuesta.getString("segunda_hora"); 
+                Precio2 = respuesta.getInt("Precio");
+            }
+            
+            Menu_Inscripcion.TextEQ(Cat,Gen,ID1,H1_1,H2_1,Precio1,ID2,H1_2,H2_2,Precio2);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+      
+    public static int IDEquipo(int Fede, String Categoria, String Genero){
+        //En caso de que ya este en algun equipo se le asigna el equipo
+        
+        boolean federado = false;
+        switch(Fede){
+            case 0 -> {
+                //No tiene equipo
+                return 0;
+            }
+            case 1 -> {
+                federado = true;
+            }
+            case 2 -> {    
+                federado = false;
+            }
+        }
+        Reiniciar();
+        try{
+        
+            Query = con.prepareStatement("SELECT ID FROM TEquipo WHERE categoria = ? and genero = ? and federado = ?");
+
+            Query.setString(1, Categoria);
+            Query.setString(2, Genero);
+            Query.setBoolean(3, federado);
+
+            respuesta = Query.executeQuery();
+            
+            if (respuesta.next()) {
+                return respuesta.getInt("ID");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    public static void CambioEq(int op,int IDE){
+        Reiniciar();
+        
+        
+        try{
+           if(op == 1){
+               IDE=IDE+2;
+            }else{
+               IDE=IDE-2;
+            }
+
+            Query = con.prepareStatement("UPDATE TDatosP SET ID_equipo = ? WHERE ID = ?");
+            Query.setInt(1, IDE);
+            Query.setInt(2, ID); // Asumiendo que ID es el identificador único para el registro
+
+            // Ejecuta la actualización
+            Query.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }   
     }
 }

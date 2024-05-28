@@ -17,29 +17,38 @@ Apellido varchar(15),
 Categoria varchar(15),
 Numero INT,
 Genero varchar(10),
-Federado boolean,
+ID_equipo int,
 Apodo varchar(20)
 );
 
+create table TPedidos(
+ID_user int,
+NCarro int auto_increment primary key,
+PrecioT int
+);
+
 CREATE TABLE TDatosC (
-ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-NºTicket int,
-Usuario varchar(15),
-Talla INT,
-Precio double,
-Recogida int,
-Descripcion varchar (700),
-Pagado boolean 
+NCarro INT,
+NProducto INT,
+Producto VARCHAR(25),
+Talla VARCHAR(2),
+Precio DOUBLE,
+PRIMARY KEY (NCarro, NProducto)
 );
 
 CREATE TABLE TEquipo (
 ID INT NOT NULL PRIMARY KEY,
 categoria varchar (15),
-genero char,
+genero varchar(1),
 federado boolean,
 primera_hora varchar (15),
 segunda_hora varchar(15),
 Precio int 
+);
+
+create table TExP(
+	ID_user int,
+	
 );
 
 insert into TEquipo (ID, categoria, genero, federado, primera_hora, segunda_hora, Precio) values
@@ -69,4 +78,4 @@ insert into TEquipo (ID, categoria, genero, federado, primera_hora, segunda_hora
 (24, "Senior", "F", false, "M 21:00", "J 21:00", 30);
 
 select * from Tinicio;
-select * from TDatosP;
+select * from TDatosC;

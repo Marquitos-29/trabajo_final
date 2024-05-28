@@ -4,9 +4,13 @@ import javax.swing.JOptionPane;
 
 public class Menu_Inscripcion extends javax.swing.JFrame {
 
+    private static int IDE;
+    private static int F;
+    
     public Menu_Inscripcion() {
         initComponents();
-        
+        IDE = DBConexion.IDE();
+        DBConexion.INFO_Equipos();
     }
 
 
@@ -19,10 +23,11 @@ public class Menu_Inscripcion extends javax.swing.JFrame {
         P_Menu = new javax.swing.JPanel();
         Fede = new javax.swing.JButton();
         Esc = new javax.swing.JButton();
-        jTextArea3 = new javax.swing.JTextArea();
-        jTextArea4 = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
+        TXT1 = new javax.swing.JTextArea();
+        TXT2 = new javax.swing.JTextArea();
+        Volver = new javax.swing.JButton();
         Info = new javax.swing.JLabel();
+        EquipoAc = new javax.swing.JLabel();
         P_Titulo = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
 
@@ -45,69 +50,88 @@ public class Menu_Inscripcion extends javax.swing.JFrame {
 
         Esc.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Esc.setText("Escuela");
-
-        jTextArea3.setEditable(false);
-        jTextArea3.setBackground(new java.awt.Color(255, 51, 51));
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jTextArea3.setText("En el equipo {FD} {Gen} las clases son \n{Hora 1}\n{Hora 2}\ny serian {Precio} al mes \n");
-        jTextArea3.setOpaque(false);
-        jTextArea3.setPreferredSize(new java.awt.Dimension(190, 50));
-
-        jTextArea4.setEditable(false);
-        jTextArea4.setBackground(new java.awt.Color(255, 51, 51));
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jTextArea4.setText("En el equipo {FD} {Gen} las clases son \n{Hora 1}\n{Hora 2}\ny serian {Precio} al mes \n");
-        jTextArea4.setOpaque(false);
-        jTextArea4.setPreferredSize(new java.awt.Dimension(190, 50));
-
-        jButton3.setText("Volver");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Esc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                EscActionPerformed(evt);
+            }
+        });
+
+        TXT1.setEditable(false);
+        TXT1.setBackground(new java.awt.Color(255, 51, 51));
+        TXT1.setColumns(20);
+        TXT1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        TXT1.setRows(5);
+        TXT1.setText("En el equipo {FD} {Gen} las clases son \n{Hora 1}\n{Hora 2}\ny serian {Precio} al mes \n");
+        TXT1.setOpaque(false);
+
+        TXT2.setEditable(false);
+        TXT2.setBackground(new java.awt.Color(255, 51, 51));
+        TXT2.setColumns(20);
+        TXT2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        TXT2.setRows(5);
+        TXT2.setText("En el equipo {FD} {Gen} las clases son \n{Hora 1}\n{Hora 2}\ny serian {Precio} al mes \n");
+        TXT2.setOpaque(false);
+
+        Volver.setText("Volver");
+        Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverActionPerformed(evt);
             }
         });
 
         Info.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         Info.setText(" ");
 
+        EquipoAc.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        EquipoAc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        EquipoAc.setText(" ");
+
         javax.swing.GroupLayout P_MenuLayout = new javax.swing.GroupLayout(P_Menu);
         P_Menu.setLayout(P_MenuLayout);
         P_MenuLayout.setHorizontalGroup(
             P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_MenuLayout.createSequentialGroup()
-                .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(P_MenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96)
-                        .addComponent(Info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(P_MenuLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Fede, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextArea3, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Esc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextArea4, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
+            .addGroup(P_MenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96)
+                .addComponent(Info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(36, 36, 36))
+            .addGroup(P_MenuLayout.createSequentialGroup()
+                .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_MenuLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TXT1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(TXT2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))
+                    .addGroup(P_MenuLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(EquipoAc, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(P_MenuLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(Fede, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Esc, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         P_MenuLayout.setVerticalGroup(
             P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_MenuLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(Esc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Fede, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(EquipoAc, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextArea4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextArea3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                    .addComponent(Esc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Fede, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TXT2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TXT1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3)
+                    .addComponent(Volver)
                     .addComponent(Info, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
@@ -154,39 +178,86 @@ public class Menu_Inscripcion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FedeActionPerformed
-        JOptionPane.showMessageDialog(null, "Muy bien ya te has inscrito en el equipo");
+        if(F==2||F==0){
+            DBConexion.CambioEq(1,IDE);
+            JOptionPane.showMessageDialog(null, "Muy bien ya te has inscrito en el equipo");
+            
+            java.awt.EventQueue.invokeLater(() -> {
+                new Menu().setVisible(true);
+                dispose();
+            });
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Ya estas en este equipo");
+        }
+        
     }//GEN-LAST:event_FedeActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
+        
         java.awt.EventQueue.invokeLater(() -> {
             new Menu().setVisible(true);
             dispose();
         });
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_VolverActionPerformed
 
-    public static void Equipo(){
+    private void EscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EscActionPerformed
+        if(F==1||F==0){
+            DBConexion.CambioEq(2,IDE);
+            JOptionPane.showMessageDialog(null, "Muy bien ya te has inscrito en el equipo");
+            
+            java.awt.EventQueue.invokeLater(() -> {
+                new Menu().setVisible(true);
+                dispose();
+            });
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Ya estas en este equipo");
+        }
+    }//GEN-LAST:event_EscActionPerformed
+    
+    public static void TextEQ(String Cat,String Gen,int ID1,String H1_1,String H2_1,int Precio1,int ID2,String H1_2,String H2_2,int Precio2){
         
-        switch(DBConexion.ComprobarE()){
-            case 0 -> {
-                
-            }
-            case 1, 2 -> {
-                Info.setText("YA TIENES UN EQUIPO, SI SELECCIONAS OTRO CAMBIARAS A ESE");
+        TXT1.setText("En el equipo federado "+Cat+" "+Gen+"\n las clases son \n" +
+                    "los "+ H1_1 +"\n" +
+                    "los "+ H2_1 +"\n" +
+                    "y serian "+Precio1+"€ al mes ");
+        
+        TXT2.setText("En el equipo de escuela "+Cat+" "+Gen+"\n las clases son \n" +
+                    "los "+ H1_2 +"\n" +
+                    "los "+ H2_2 +"\n" +
+                    "y serian "+Precio2+"€ al mes ");
+        
+        
+        if(IDE==0){
+            EquipoAc.setText("");
+            F=0;
+        }else{
+            if(IDE%4==1 || IDE%4==2){
+                EquipoAc.setText("Ya estas en el "+Cat+" "+Gen+" "+" federado, si seleccionas otro cambiaras de equipo");
+                F=1;
+            }else{
+                EquipoAc.setText("Ya estas en el "+Cat+" "+Gen+" "+" de escuela, si seleccionas otro cambiaras de equipo");
+                F=2;
+           
             }
         }
+        
     }
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JLabel EquipoAc;
     private javax.swing.JButton Esc;
     private javax.swing.JButton Fede;
     private static javax.swing.JLabel Info;
     private javax.swing.JPanel P_Menu;
     private javax.swing.JPanel P_Titulo;
+    private static javax.swing.JTextArea TXT1;
+    private static javax.swing.JTextArea TXT2;
     private javax.swing.JLabel Titulo;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton Volver;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
     // End of variables declaration//GEN-END:variables
 }

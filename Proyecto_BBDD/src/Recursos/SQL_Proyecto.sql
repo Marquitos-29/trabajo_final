@@ -17,7 +17,7 @@ Apellido varchar(15),
 Categoria varchar(15),
 Numero INT,
 Genero varchar(10),
-Federado int,
+ID_equipo int,
 Apodo varchar(20)
 );
 
@@ -39,7 +39,7 @@ PRIMARY KEY (NCarro, NProducto)
 CREATE TABLE TEquipo (
 ID INT NOT NULL PRIMARY KEY,
 categoria varchar (15),
-genero char,
+genero varchar(1),
 federado boolean,
 primera_hora varchar (15),
 segunda_hora varchar(15),
@@ -48,7 +48,7 @@ Precio int
 
 create table TExP(
 	ID_user int,
-	ID_equipo int
+	
 );
 
 insert into TEquipo (ID, categoria, genero, federado, primera_hora, segunda_hora, Precio) values

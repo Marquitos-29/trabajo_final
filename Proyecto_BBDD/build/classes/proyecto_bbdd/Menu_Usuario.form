@@ -7,13 +7,15 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Menu Usuario"/>
     <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
       <Point value="[660, 340]"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -301,7 +303,6 @@
               <Font name="Dialog" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Federado"/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="R_Escuela">
@@ -313,7 +314,6 @@
               <Font name="Dialog" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Escuela   "/>
-            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="Genero">

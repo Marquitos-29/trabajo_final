@@ -1,11 +1,13 @@
 package proyecto_bbdd;
 
 import java.time.Year;
+import javax.swing.ImageIcon;
 
 public class Menu_Usuario extends javax.swing.JFrame {
 
     public Menu_Usuario() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("../Recursos/balon.jpg")).getImage());
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -34,7 +36,9 @@ public class Menu_Usuario extends javax.swing.JFrame {
         Info = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Usuario");
         setLocation(new java.awt.Point(660, 340));
+        setResizable(false);
 
         P_Titulo.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -92,12 +96,10 @@ public class Menu_Usuario extends javax.swing.JFrame {
         G_Fede.add(R_Federado);
         R_Federado.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         R_Federado.setText("Federado");
-        R_Federado.setOpaque(false);
 
         G_Fede.add(R_Escuela);
         R_Escuela.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         R_Escuela.setText("Escuela   ");
-        R_Escuela.setOpaque(false);
 
         Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer" }));
 
@@ -215,35 +217,43 @@ public class Menu_Usuario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
  
+        //Se comprueba que los campos estan rellenos
         if(Nombre.getText().isEmpty() || Apellidos.getText().isEmpty() || Apodo.getText().isEmpty() || Ano_nac.getText().isEmpty()){
         
             Info.setText("Rellene todos los campos (Menos equipo si no esta inscrito)");
-            
+        
         }else{
             
+            //Se guardan y solicitan los datos
             int Fede = Federado();
             String Cat = Categoria();
             String Gen = Genero();
             
+            //Se comprueba q no sea muy pequeño
+            
             if(Cat == "Pequeño"){
                 Info.setText("Muy pequeño para jugar");
             }else{
+                //Se llama al metodo para guardar los datos
                 DBConexion.GuardarDatosP(Nombre.getText(),Apellidos.getText(),Apodo.getText(),Cat,Integer.parseInt(N_jugador.getText()),Gen,Fede);
             
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new Menu().setVisible(true);
-                    dispose();
-                }
-            });
+                //Se abre la ventana menu
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        new Menu().setVisible(true);
+                        dispose();
+                    }
+                });
             }
         }        
     }//GEN-LAST:event_GuardarActionPerformed
-
+    
+    //COmprobamos si es federado, de escuela o no tiene equipo
     public int Federado(){
         
         if (G_Fede.getSelection()==null) {
@@ -257,10 +267,12 @@ public class Menu_Usuario extends javax.swing.JFrame {
         } 
     }
     
+    //Comprobamos la categoria
     public String Categoria(){
-        
+        //Se calcula la edad
         int años = Year.now().getValue()-Integer.parseInt(Ano_nac.getText());
         
+        //Se asigna la categoria a la edad 
         return switch (años) {
             case 0, 1, 2, 3, 4, 5, 6 -> "Pequeño";
             case 7, 8, 9, 10 -> "Alevin";

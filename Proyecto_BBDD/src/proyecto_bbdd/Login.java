@@ -1,8 +1,13 @@
 package proyecto_bbdd;
+
+import javax.swing.ImageIcon;
+
 public class Login extends javax.swing.JFrame {
 
     public Login() {
+        //Iniciamos los componentes y seleccionamos el icono
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("../Recursos/balon.jpg")).getImage());
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

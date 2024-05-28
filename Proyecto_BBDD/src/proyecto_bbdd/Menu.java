@@ -1,8 +1,13 @@
 package proyecto_bbdd;
+
+import javax.swing.ImageIcon;
+
 public class Menu extends javax.swing.JFrame {
 
     public Menu() {
+        //Iniciamos y ponemos el icono 
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("../Recursos/balon.jpg")).getImage());
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -18,6 +23,7 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
         setLocation(new java.awt.Point(660, 340));
+        setResizable(false);
 
         P_Titulo.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -111,8 +117,10 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //Vamos al menu de inscripciones
     private void M_InscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_InscripcionActionPerformed
         java.awt.EventQueue.invokeLater(() -> {
             new Menu_Inscripcion().setVisible(true);
@@ -120,6 +128,7 @@ public class Menu extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_M_InscripcionActionPerformed
 
+    //Vamos a la tienda
     private void M_TiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_TiendaActionPerformed
         java.awt.EventQueue.invokeLater(() -> {
             new Tienda().setVisible(true);
@@ -127,6 +136,7 @@ public class Menu extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_M_TiendaActionPerformed
 
+    //Volvemos a login
     private void M_Tienda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_Tienda1ActionPerformed
         java.awt.EventQueue.invokeLater(() -> {
             new Login().setVisible(true);

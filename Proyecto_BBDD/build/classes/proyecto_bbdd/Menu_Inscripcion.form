@@ -20,6 +20,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Inscripciones"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -71,35 +72,39 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Volver" min="-2" pref="87" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                  <Component id="Volver" min="-2" pref="111" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                   <Component id="Info" max="32767" attributes="0"/>
                   <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="TXT1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="TXT2" min="-2" pref="262" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="EquipoAc" min="-2" pref="548" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                          <Component id="EquipoAc" min="-2" pref="548" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TXT1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="Fede" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TXT2" alignment="1" min="-2" pref="262" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
                                   <Component id="Esc" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -119,9 +124,9 @@
                       <Component id="TXT1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="Volver" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="Info" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="Volver" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
@@ -230,7 +235,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="Titulo" alignment="0" pref="600" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="Titulo" min="-2" pref="752" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

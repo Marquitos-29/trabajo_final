@@ -1,9 +1,13 @@
 package proyecto_bbdd;
 
+
+//Imports para que funcione el codigo correctamente
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+
+//En esta clase se ejecutara la logica del programa
 public class DBConexion {
     
     //Datos para la conexion SQL
@@ -44,7 +48,7 @@ public class DBConexion {
         }
     }
             
-    //Conectamos con la base de datos
+    //Conectamos con la base de datos C
     public Connection getConnection(){
         con = null;
         
@@ -60,13 +64,13 @@ public class DBConexion {
         return con;  
     }
     
-    //Creo un metodo para reiniciar las query y las respuestas de estas 
+    //Creo un metodo para reiniciar las query y las respuestas de estas C
     public static void Reiniciar(){
         Query = null;
         respuesta = null;
     }
     
-    //Inicio de sesion del Login        acceso = 0 (Acceptado) 1 (error de usuario) 2 (error de contraseña)    -1 (error de conexion)
+    //Inicio de sesion del Login        acceso = 0 (Acceptado) 1 (error de usuario) 2 (error de contraseña)    -1 (error de conexion) C
     public static int Inicio(String User, String password){
         
         //Reiniciamos
@@ -115,6 +119,7 @@ public class DBConexion {
         return acceso;
     }
     
+    //Registro del login C
     public static int Registro(String User, String password){
         //reiniciamos la query 
         Reiniciar();
@@ -150,11 +155,12 @@ public class DBConexion {
         return acceso;
     }  
     
-    // Guardamos los datos del usuario
+    // Guardamos los datos del usuario C
     public static int GuardarDatosP(String Nombre,String Apellidos,String Apodo, String Cat,int Numero, String Genero, int Fede){
         //Reiniciamos 
         Reiniciar();
         
+        //Recogemos el Id del equipo del metodo IDEquipo
         int IDEquipo = IDEquipo(Fede, Cat, Genero);
         
         try{
@@ -185,32 +191,56 @@ public class DBConexion {
         return 1;
     }
     
-    //Añadir productos al carrito
+    //Añadir productos al carrito C
     public static void AnadirC(String producto, String talla, int precio){
         
-        // Agregamos el producto a la tabla
+        // Agregamos el producto a la tabla e informamos
         tabla.add(new Object[]{producto, talla, precio});
         JOptionPane.showMessageDialog(null, "Artículo añadido al carrito con éxito", "Información", JOptionPane.INFORMATION_MESSAGE);
-    
     }
     
+   //Con este metodo cargamos la tabla en el carrito para verlo  C
     public static void VerCarrito(){
+        
+        //Reseteamos el carrito para evitar duplicar valores 
+        Carrito.Resetear();
+        
+        //Reiniciamos el precio y el builder
         PrecioT = 0;
+        StringBuilder producto = new StringBuilder();
+        
+        //Pasamos por cada una de las filas de la tabla 
         for (Object[] fila : tabla) {
+            //Añadimos la fila al carrito
             Carrito.AñadirFila(fila);
             int indice = 0;
             
+            //Pasamos por los objetos de la tabla del carrito
             for (Object dato : fila) {
-                if(indice==2){
+                //Si es el 1º objeto se guarda el nombre para el combobox, si es el segundo se guarda la talla
+                switch(indice){
+                    case 0 ->{
+                            producto.append((String)dato);
+                        }
+                    case 1 ->{
+                        if((String)dato!=null){producto.append(" "+(String)dato);}
+                        
+                            Carrito.AñadirCombo(producto.toString());
+                            producto.setLength(0);
+                        }
                     
-                    PrecioT = PrecioT + (int) dato;
+                    //Si es el 3º se suma el precio para generar la suma del precio
+                    case 2 -> PrecioT = PrecioT + (int) dato;
+                    
                 }
                 ++indice;
             }
         }
+        //Añadimos el precio total al frame
         Carrito.Precio(PrecioT);
     }
     
+    //Añadir la compra a la BBDD C
     public static void Comprar(){
         
         //reiniciamos la query 
@@ -218,39 +248,46 @@ public class DBConexion {
         
        try{
             
-            //Insertamos los valores del registro 
+            //Insertamos los valores del la compra  
             String SQL = "insert into TPedidos values(?,?,?)";
             Query = con.prepareStatement(SQL,PreparedStatement.RETURN_GENERATED_KEYS);
-            //Se dan los valores para este insert que seran los futuros valores del login
+            //Se dan los valores para este insert que son los valores de la compra
             Query.setInt(1, ID);
             Query.setInt(2, 0);
             Query.setInt(3, PrecioT);
             
             //Ejecuta la Query
             Query.executeUpdate();
+            //Recogemos la KEY (ID)
             respuesta = Query.getGeneratedKeys();
             
-            //Recoger la respuesta
+            //Recoger la KEY (ID)
             if (respuesta.next()) {
                 NCarro = respuesta.getInt(1);
             }
             
-            
+            // Creamos un indice de objetos
             int Nproducto = 0;
+            //Pasamos por todos los procuctos
             for (Object[] fila : tabla) {
                 
-                
+                //Reiniciamos
                 Reiniciar();
-
+                
+                //Generamos la Query para insertar los productos
                 Query = con.prepareStatement("insert into TDatosC values(?,?,?,?,?)");
-
+                
+                
                 int indice = 0;
                 ++Nproducto;
                 
+                //insertamos el numero del carro
                 Query.setInt(1, NCarro);
+                //Insertamos el Index de productos 
                 Query.setInt(2, Nproducto);
                     
-                    for (Object dato : fila) {
+                    for (Object dato : fila) {  
+                        //Pasamos objeto por objeto Si es el 1º se guarda como Producto, el 2º como talla y el 3º como precio
                         switch(indice){
                             case 0 -> {
                                 Query.setString(3, (String)dato);
@@ -264,7 +301,7 @@ public class DBConexion {
                         }
                         ++indice;
                     }
-                
+                //Ejecutamos la Query y pasamos al siguiente producto del carrito
                 Query.executeUpdate();
         
             }
@@ -276,15 +313,17 @@ public class DBConexion {
             acceso = -1; // Error de conexión o consulta SQL
             
         }  
-       
+       //Limpiamos la tabla
        tabla.clear();
        
     }
     
+    //Insertamos el precio total a la confirmacion de compra C
     public static void Precio(){
         FCompra.EscPrecio(PrecioT);
     }
     
+    //Comprobamos el equipo del user C
     public static int ComprobarE(){
         Reiniciar();
         int Fede = 0;
@@ -309,8 +348,10 @@ public class DBConexion {
         return Fede;
     }
     
+    //Buscamos el ID del equipo en el q esta el user C
     public static int IDE(){
-        
+        Reiniciar();
+    
         try{
         
             Query = con.prepareStatement("SELECT ID_equipo FROM TDatosP WHERE ID = ?");
@@ -331,9 +372,10 @@ public class DBConexion {
         return 0;
     }
     
+    //Buscar los datos de los equipos disponibles para la inscripcion C
     public static void INFO_Equipos(){
-        Reiniciar();
         
+        //Datos del user
         String Gen ="";
         String Cat ="";
 
@@ -351,19 +393,23 @@ public class DBConexion {
         
         try{
             Reiniciar();
+            //Buscamos el genero y la categoria del user
             Query = con.prepareStatement("SELECT Genero,Categoria FROM TDatosP WHERE ID = ?");
 
             Query.setInt(1, ID);
 
             respuesta = Query.executeQuery();
             
+            //Recogemos la respuesta
             if (respuesta.next()) {
                 Gen = respuesta.getString("Genero");
                 Cat = respuesta.getString("Categoria");                
             }
             
+            //Reiniciamos
             Reiniciar();
             
+            //Preguntamos por el ID y las horas del federado
             Query = con.prepareStatement("SELECT ID,primera_hora,segunda_hora,Precio FROM TEquipo WHERE categoria = ? and genero = ? and federado = ?");
 
             Query.setString(1, Cat);
@@ -371,7 +417,7 @@ public class DBConexion {
             Query.setBoolean(3, true);
             
             respuesta = Query.executeQuery();
-            
+            //Recogemos los datos
             if (respuesta.next()) {
                 ID1 = respuesta.getInt("ID");
                 H1_1 = respuesta.getString("primera_hora");   
@@ -379,8 +425,10 @@ public class DBConexion {
                 Precio1 = respuesta.getInt("Precio");
             }
             
+            //Reiniciamos
             Reiniciar();
             
+            //Preguntamos por el ID y las horas del equipo de escuela
             Query = con.prepareStatement("SELECT ID,primera_hora,segunda_hora,Precio FROM TEquipo WHERE categoria = ? and genero = ? and federado = ?");
 
             Query.setString(1, Cat);
@@ -389,6 +437,7 @@ public class DBConexion {
             
             respuesta = Query.executeQuery();
             
+            //Recogemos los datos
             if (respuesta.next()) {
                 ID2 = respuesta.getInt("ID");
                 H1_2 = respuesta.getString("primera_hora");   
@@ -396,6 +445,7 @@ public class DBConexion {
                 Precio2 = respuesta.getInt("Precio");
             }
             
+            //Escribimos los datos de los equipos por pantalla
             Menu_Inscripcion.TextEQ(Cat,Gen,ID1,H1_1,H2_1,Precio1,ID2,H1_2,H2_2,Precio2);
             
         } catch (SQLException e) {
@@ -403,9 +453,11 @@ public class DBConexion {
         }
     }
       
+    //Sacar el ID del equipo en el que esta o deveria  C
     public static int IDEquipo(int Fede, String Categoria, String Genero){
         //En caso de que ya este en algun equipo se le asigna el equipo
         
+        //En caso de no estar en ningun equipo se asignara el equipo 0 que representa q no esta en ninguno
         boolean federado = false;
         switch(Fede){
             case 0 -> {
@@ -419,9 +471,11 @@ public class DBConexion {
                 federado = false;
             }
         }
+        
+        //reiniciamos los valores de las querys para evitar conflictos
         Reiniciar();
         try{
-        
+            // Preguntamos por el ID del equipo
             Query = con.prepareStatement("SELECT ID FROM TEquipo WHERE categoria = ? and genero = ? and federado = ?");
 
             Query.setString(1, Categoria);
@@ -430,26 +484,31 @@ public class DBConexion {
 
             respuesta = Query.executeQuery();
             
+            //Devolvemos el ID del equipo
             if (respuesta.next()) {
                 return respuesta.getInt("ID");
             }
-            
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        //En caso de error devolvemos 0 q es el generico
         return 0;
     }
+    
+    //Cambiar de equipo C
     public static void CambioEq(int op,int IDE){
+        //Reiniciamos 
         Reiniciar();
         
-        
+        //Si es de un equipo se cambia al otro cambiando el ID
         try{
            if(op == 1){
                IDE=IDE+2;
             }else{
                IDE=IDE-2;
             }
-
+           
+           //Se acctualiza el ID del equipo al usuario
             Query = con.prepareStatement("UPDATE TDatosP SET ID_equipo = ? WHERE ID = ?");
             Query.setInt(1, IDE);
             Query.setInt(2, ID); // Asumiendo que ID es el identificador único para el registro
@@ -459,5 +518,11 @@ public class DBConexion {
         } catch (SQLException e) {
             e.printStackTrace();
         }   
+    }
+    
+    //Quitamos un item de la tabla y la actualizamos C
+    public static void QProductos(int index){
+        tabla.remove(index);
+        VerCarrito();
     }
 }

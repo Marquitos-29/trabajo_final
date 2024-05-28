@@ -1,9 +1,14 @@
 package proyecto_bbdd;
+
+import javax.swing.ImageIcon;
+
 public class Tienda extends javax.swing.JFrame {
 
     public Tienda() {
+        //Se inician los componentes, el primer panel y el icono
         initComponents();
         ProductoInicio();
+        setIconImage(new ImageIcon(getClass().getResource("../Recursos/balon.jpg")).getImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -193,6 +198,7 @@ public class Tienda extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //Se asigna al panel el primer producto, el resto de botones del frame cambian los productos
     private void ProductoInicio(){
         Productos.Camiseta pn = new Productos.Camiseta();
         pn.setSize(600,400);
@@ -266,6 +272,7 @@ public class Tienda extends javax.swing.JFrame {
         Custom.repaint();
     }//GEN-LAST:event_BalonActionPerformed
 
+    //Abre la ventana carrito
     private void CarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarritoActionPerformed
         java.awt.EventQueue.invokeLater(() -> {
             new Carrito().setVisible(true);

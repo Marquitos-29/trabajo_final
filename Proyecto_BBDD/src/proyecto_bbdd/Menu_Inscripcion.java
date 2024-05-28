@@ -1,16 +1,22 @@
 package proyecto_bbdd;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Menu_Inscripcion extends javax.swing.JFrame {
 
+    //Guardamos unos datos
     private static int IDE;
     private static int F;
     
+    //INIciamos y ponemos el icono
     public Menu_Inscripcion() {
         initComponents();
+        //Recogemos el ID del equipo del usuario
         IDE = DBConexion.IDE();
+        //Recivimos la informacion de los equipos
         DBConexion.INFO_Equipos();
+        setIconImage(new ImageIcon(getClass().getResource("../Recursos/balon.jpg")).getImage());
     }
 
 
@@ -36,6 +42,7 @@ public class Menu_Inscripcion extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextArea2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inscripciones");
         setResizable(false);
 
         P_Menu.setBackground(new java.awt.Color(255, 51, 51));
@@ -92,29 +99,31 @@ public class Menu_Inscripcion extends javax.swing.JFrame {
             P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(P_MenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
+                .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
                 .addComponent(Info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(36, 36, 36))
             .addGroup(P_MenuLayout.createSequentialGroup()
                 .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_MenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(TXT1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(TXT2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6))
                     .addGroup(P_MenuLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(EquipoAc, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EquipoAc, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(P_MenuLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TXT1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(P_MenuLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
+                                .addGap(20, 20, 20)
                                 .addComponent(Fede, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(31, 31, 31)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TXT2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(P_MenuLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
                                 .addComponent(Esc, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(49, 49, 49)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(43, 43, 43)))))
+                .addGap(55, 55, 55))
         );
         P_MenuLayout.setVerticalGroup(
             P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,9 +139,9 @@ public class Menu_Inscripcion extends javax.swing.JFrame {
                     .addComponent(TXT2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TXT1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Volver)
-                    .addComponent(Info, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(P_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Info, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Volver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
 
@@ -146,7 +155,9 @@ public class Menu_Inscripcion extends javax.swing.JFrame {
         P_Titulo.setLayout(P_TituloLayout);
         P_TituloLayout.setHorizontalGroup(
             P_TituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(P_TituloLayout.createSequentialGroup()
+                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         P_TituloLayout.setVerticalGroup(
             P_TituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,10 +189,13 @@ public class Menu_Inscripcion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FedeActionPerformed
+        //Si ya esta federado no permite cambiarlo
         if(F==2||F==0){
+            //Se envia el id y el equipo al que se quiere cambiar y se cambia en la parte de la logicay se notifica
             DBConexion.CambioEq(1,IDE);
             JOptionPane.showMessageDialog(null, "Muy bien ya te has inscrito en el equipo");
             
+            //Cambia la ventana al menu
             java.awt.EventQueue.invokeLater(() -> {
                 new Menu().setVisible(true);
                 dispose();
@@ -193,6 +207,7 @@ public class Menu_Inscripcion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_FedeActionPerformed
 
+    //Boton para volver al menu
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         
         java.awt.EventQueue.invokeLater(() -> {
@@ -201,11 +216,14 @@ public class Menu_Inscripcion extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_VolverActionPerformed
 
+    //Pasar a escuela
     private void EscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EscActionPerformed
         if(F==1||F==0){
+            //Se envia el id y el equipo al que se quiere cambiar y se cambia en la parte de la logicay se notifica
             DBConexion.CambioEq(2,IDE);
             JOptionPane.showMessageDialog(null, "Muy bien ya te has inscrito en el equipo");
             
+            //Se vuelve al menu
             java.awt.EventQueue.invokeLater(() -> {
                 new Menu().setVisible(true);
                 dispose();
@@ -216,6 +234,7 @@ public class Menu_Inscripcion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EscActionPerformed
     
+    //Se cambian y modifican los textos al usuarios
     public static void TextEQ(String Cat,String Gen,int ID1,String H1_1,String H2_1,int Precio1,int ID2,String H1_2,String H2_2,int Precio2){
         
         TXT1.setText("En el equipo federado "+Cat+" "+Gen+"\n las clases son \n" +
